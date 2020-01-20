@@ -70,10 +70,8 @@ export default class App extends React.Component {
     <div className="App">
       <header className="App-header">
         {renderedLogos}
-        <ColoredText
-          className="text yellow-text"/>
-        <ColoredText
-          className="text green-text"/>
+        <ColoredText text='Some text1' color='red'/>
+        <ColoredText text='Some text2' color='yellow'/>
         <a
           className="App-link"
           href="https://reactjs.org"
