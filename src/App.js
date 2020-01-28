@@ -1,5 +1,6 @@
 import React from 'react';
 import ColoredText from './colored-text';
+import UserInfoForm from './userInfoForm';
 
 import logo from './logo.svg';
 import './App.css';
@@ -72,6 +73,8 @@ export default class App extends React.Component {
         {renderedLogos}
         <ColoredText text='Some text1' color='red'/>
         <ColoredText text='Some text2' color='yellow'/>
+        <UserInfoForm placeholder="Type your name here" submitBtn="Send"/>
+        <UserInfoForm placeholder="Add your lastname" submitBtn="Send"/>
         <a
           className="App-link"
           href="https://reactjs.org"

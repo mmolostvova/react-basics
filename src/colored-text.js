@@ -6,7 +6,7 @@ export default class ColoredText extends React.Component {
 
         return (
             <div>
-                <h1 className={this.props.color}>{this.props.text}</h1>
+                <p className={this.props.color}>{this.props.text}</p>
             </div>
         )
     }
