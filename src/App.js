@@ -12,11 +12,15 @@ export default class App extends React.Component {
     console.log('constructor #1');
 
     this.state = {
-      counter: 1
+      counter: 1,
+      field1: '',
+      field2: '',
     };
 
     this.onAddLogo = this.onAddLogo.bind(this);
     this.onRemoveLogo = this.onRemoveLogo.bind(this);
+    this.onChangeField1 = this.onChangeField1.bind(this);
+    this.onSubmitForm = this.onSubmitForm.bind(this);
   }
   
   componentDidMount() {
@@ -56,13 +60,26 @@ export default class App extends React.Component {
     console.log('componentDidUpdate #5');
   }
 
+  onChangeField1 = (e) => {
+    //console.log('onChangeField1', argument.target.value);
+    this.setState({
+        field1: e.target.value
+    }, () => console.log(this.state.field1))
+  }
+
+  onSubmitForm = (event) => {
+    event.preventDefault();
+    alert('Отправленное имя: ' + this.state.field1);
+    console.log('onSubmitForm');
+  }
+
   render () {
     console.log('render #2')
 
     const renderedLogos = [];
 
     for(let i = 0; i < this.state.counter; i++) {
-      renderedLogos.push(<img src={logo} className="App-logo" alt="logo" />);
+      renderedLogos.push(<img src={logo} className="App-logo-active" alt="logo" />);
       console.log('------------#7')
     }
     
@@ -73,7 +90,12 @@ export default class App extends React.Component {
         {renderedLogos}
         <ColoredText text='Some text1' color='red'/>
         <ColoredText text='Some text2' color='yellow'/>
-        <UserInfoForm placeholder="Type your name here" submitBtn="Send"/>
+        <UserInfoForm 
+          placeholder="Type your name here" 
+          submitBtn="Send"
+          onTyping={this.onChangeField1}
+          value={this.state.field1}
+          onPressSubmit={this.onSubmitForm}/>
         <UserInfoForm placeholder="Add your lastname" submitBtn="Send"/>
         <a
           className="App-link"

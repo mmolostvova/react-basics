@@ -8,33 +8,31 @@ export default class UserInfoForm extends React.Component {
             label: ''
         }
     
-        this.onTyping = this.onTyping.bind(this);
-        this.onEnterKey = this.onEnterKey.bind(this);
+        //this.onTyping = this.onTyping.bind(this);
+        //this.onEnterKey = this.onEnterKey.bind(this);
     }
     
-    onTyping = (e) => {
-        this.setState({
-            label: e.target.value.toUpperCase()
-        })
-        return (
-            console.log(this.state)
-        )
-    }
+    // onTyping = (e) => {
+    //     this.setState({
+    //         label: e.target.value.toUpperCase()
+    //     }, () => console.log(this.state))
+    // }
 
-    onEnterKey(event) {
-        event.preventDefault();
-        alert('Отправленное имя: ' + this.state.label);
-        console.log('onEnterKey');
-    }
+    // onEnterKey(event) {
+    //     event.preventDefault();
+    //     alert('Отправленное имя: ' + this.state.label);
+    //     console.log('onEnterKey');
+    // }
 
     render () {
         return(
-            <form onSubmit={this.onEnterKey}>
+            <form onSubmit={this.props.onPressSubmit}>
                 <input 
                     type="text"
                     placeholder={this.props.placeholder}
-                    onChange={this.onTyping}
-                    value={this.state.label}/>
+                    onChange={this.props.onTyping}
+                    // value={this.state.label}
+                    />
                 <input type="submit" value={this.props.submitBtn} />
             </form>
         )
