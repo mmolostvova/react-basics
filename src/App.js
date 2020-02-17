@@ -1,5 +1,5 @@
 import React from 'react';
-import ColoredText from './colored-text';
+import BigForm from './BigForm';
 
 import logo from './logo.svg';
 import './App.css';
@@ -61,7 +61,7 @@ export default class App extends React.Component {
     const renderedLogos = [];
 
     for(let i = 0; i < this.state.counter; i++) {
-      renderedLogos.push(<img src={logo} className="App-logo" alt="logo" />);
+      renderedLogos.push(<img src={logo} className="App-logo-active" alt="logo" />);
       console.log('------------#7')
     }
     
@@ -69,17 +69,25 @@ export default class App extends React.Component {
       
     <div className="App">
       <header className="App-header">
-        {renderedLogos}
-        <ColoredText text='Some text1' color='red'/>
-        <ColoredText text='Some text2' color='yellow'/>
-        <a
+        <div className="progress-bar">
+        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
+        </div>
+        <BigForm/>
+      </header>
+      <body>
+      {renderedLogos}
+        {/* <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a> */}
       <button 
         className="btn"
         onClick={this.onAddLogo}>
@@ -90,7 +98,8 @@ export default class App extends React.Component {
         onClick={this.onRemoveLogo}>
           Remove logo
       </button>
-      </header>
+
+      </body>
     </div>
   );
 }
