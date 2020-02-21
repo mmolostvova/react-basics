@@ -69,13 +69,6 @@ export default class App extends React.Component {
       
     <div className="App">
       <header className="App-header">
-        <div className="progress-bar">
-        <img src={logo} className="App-logo" alt="logo" />
-        <img src={logo} className="App-logo" alt="logo" />
-        <img src={logo} className="App-logo" alt="logo" />
-        <img src={logo} className="App-logo" alt="logo" />
-        <img src={logo} className="App-logo" alt="logo" />
-        </div>
         <BigForm/>
       </header>
       <body>
