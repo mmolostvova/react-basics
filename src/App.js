@@ -1,8 +1,9 @@
 import React from 'react';
-import BigForm from './BigForm';
+import BigForm from './BigForm/BigForm';
 
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default class App extends React.Component {
 
@@ -58,41 +59,17 @@ export default class App extends React.Component {
   render () {
     console.log('render #2')
 
-    const renderedLogos = [];
+    // const renderedLogos = [];
 
-    for(let i = 0; i < this.state.counter; i++) {
-      renderedLogos.push(<img src={logo} className="App-logo-active" alt="logo" />);
-      console.log('------------#7')
-    }
+    // for(let i = 0; i < this.state.counter; i++) {
+    //   renderedLogos.push(<img src={logo} className="App-logo-active" alt="logo" />);
+    //   console.log('------------#7')
+    // }
     
     return (
       
     <div className="App">
-      <header className="App-header">
         <BigForm/>
-      </header>
-      <body>
-      {renderedLogos}
-        {/* <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-      <button 
-        className="btn"
-        onClick={this.onAddLogo}>
-          Add logo
-      </button>
-      <button 
-        className="btn delete-btn"
-        onClick={this.onRemoveLogo}>
-          Remove logo
-      </button>
-
-      </body>
     </div>
   );
 }

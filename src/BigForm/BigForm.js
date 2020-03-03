@@ -1,5 +1,5 @@
 import React from "react";
-//import Moment from "moment";
+import { Form, Button } from "react-bootstrap";
 
 import logo from "./logo.svg";
 import "./BigForm.css";
@@ -31,7 +31,7 @@ export default class BigForm extends React.Component {
     this.handleBirthDateChange = this.handleBirthDateChange.bind(this);
     this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);    
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.canBeSubmitted = this.canBeSubmitted.bind(this);
   }
@@ -53,10 +53,10 @@ export default class BigForm extends React.Component {
     );
   };
 
-  handleEmailChange = (event) => {
+  handleEmailChange = event => {
     const val = event.target.value;
     const dataCheck = [...this.state.isLogoRotating];
-    dataCheck[1] = val.includes('@');
+    dataCheck[1] = val.includes("@");
     this.setState(
       state => ({
         email: val,
@@ -70,10 +70,10 @@ export default class BigForm extends React.Component {
     );
   };
 
-  handleBirthDateChange = (event) => {
+  handleBirthDateChange = event => {
     const val = event.target.value;
     const dataCheck = [...this.state.isLogoRotating];
-    const isYearValid = new Date(val).getFullYear()
+    const isYearValid = new Date(val).getFullYear();
     dataCheck[2] = isYearValid < 2005 && isYearValid > 1935;
 
     this.setState(
@@ -86,14 +86,16 @@ export default class BigForm extends React.Component {
         }
       }),
       () => console.log(this.state.isLogoRotating)
-    )
+    );
   };
 
-  handlePhoneNumberChange = (event) => {
+  handlePhoneNumberChange = event => {
     const val = event.target.value;
     const dataCheck = [...this.state.isLogoRotating];
-    const regex = new RegExp(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{2})[-. ]?([0-9]{2})$/);
-    dataCheck[3] = regex.test(val)
+    const regex = new RegExp(
+      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{2})[-. ]?([0-9]{2})$/
+    );
+    dataCheck[3] = regex.test(val);
 
     this.setState(
       state => ({
@@ -101,7 +103,9 @@ export default class BigForm extends React.Component {
         isLogoRotating: dataCheck,
         errors: {
           ...state.errors,
-          phoneNumber: dataCheck[3] ? "" : "Put your phone number in a correct format: (000) 000 00 00"
+          phoneNumber: dataCheck[3]
+            ? ""
+            : "Put your phone number in a correct format: (000) 000 00 00"
         }
       }),
       () => console.log(this.state.isLogoRotating, dataCheck[3])
@@ -111,7 +115,7 @@ export default class BigForm extends React.Component {
   handleCheckboxChange = () => {
     const dataCheck = [...this.state.isLogoRotating];
     dataCheck[4] = !dataCheck[4];
-    
+
     this.setState(
       state => ({
         checkbox: !this.state.checkbox,
@@ -122,10 +126,10 @@ export default class BigForm extends React.Component {
         }
       }),
       () => console.log(this.state.isLogoRotating, dataCheck[4])
-    )
+    );
   };
 
-  handlePasswordChange = (event) => {
+  handlePasswordChange = event => {
     const val = event.target.value;
     const dataCheck = [...this.state.isLogoRotating];
     dataCheck[5] = val.length > 7;
@@ -143,39 +147,43 @@ export default class BigForm extends React.Component {
   };
 
   canBeSubmitted = () => {
-    const { userName, birthDate, email, phoneNumber, checkbox, password } = this.state;
+    const {
+      userName,
+      birthDate,
+      email,
+      phoneNumber,
+      checkbox,
+      password
+    } = this.state;
 
     //const { isLogoRotating } = this.state;
-    
+
     return (
-      userName.length > 0 && 
-      birthDate !== null && 
-      email.length > 0 && 
-      phoneNumber !== null && 
-      checkbox !== false && 
+      userName.length > 0 &&
+      birthDate !== null &&
+      email.length > 0 &&
+      phoneNumber !== null &&
+      checkbox !== false &&
       password.length > 7
-      );
+    );
     //isLogoRotating === [true, true, true, true, true, true]
-  }
+  };
 
   handleSubmit = event => {
-
     if (!this.canBeSubmitted()) {
       event.preventDefault();
       return;
     }
-    return (
-      alert ("Your data:" + JSON.stringify(this.state))
-      //console.log(this.state)
-    )
+    return alert("Your data:" + JSON.stringify(this.state));
+    //console.log(this.state)
   };
 
   render() {
     const isEnabled = this.canBeSubmitted();
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="progress-bar">
+      <Form onSubmit={this.handleSubmit}>
+        <div className="prog-bar">
           <img
             src={logo}
             className={
@@ -192,7 +200,6 @@ export default class BigForm extends React.Component {
           />
           <img
             src={logo}
-            id="3"
             className={
               this.state.isLogoRotating[2] ? "App-logo-active" : "App-logo"
             }
@@ -200,7 +207,6 @@ export default class BigForm extends React.Component {
           />
           <img
             src={logo}
-            id="4"
             className={
               this.state.isLogoRotating[3] ? "App-logo-active" : "App-logo"
             }
@@ -208,7 +214,6 @@ export default class BigForm extends React.Component {
           />
           <img
             src={logo}
-            id="5"
             className={
               this.state.isLogoRotating[4] ? "App-logo-active" : "App-logo"
             }
@@ -216,81 +221,97 @@ export default class BigForm extends React.Component {
           />
           <img
             src={logo}
-            id="5"
             className={
               this.state.isLogoRotating[5] ? "App-logo-active" : "App-logo"
             }
             alt="logo"
-          />          
+          />
         </div>
-        <label>
-          Put your name here:
-          <input
+
+        <Form.Group>
+          <Form.Label>Put your name here</Form.Label>
+          <Form.Control
             type="text"
+            placeholder="e.g. Alex Fox"
+            //className={this.state.isLogoRotating[0] ? "is-valid" : "is-invalid"}
             value={this.state.userName}
             onChange={this.handleUserNameChange}
           />
-        </label>
+        </Form.Group>
         {this.state.errors.userName.length ? (
           <p>{this.state.errors.userName}</p>
         ) : null}
-        <label>
-          Email:
-          <input
+
+        <Form.Group>
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
             type="email"
+            placeholder="example@site.com"
             value={this.state.email}
             onChange={this.handleEmailChange}
           />
-        </label>
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
         {this.state.errors.email.length ? (
           <p>{this.state.errors.email}</p>
         ) : null}
-        <label>
-          Date of birth:
-          <input
+
+        <Form.Group>
+          <Form.Label>Date of birth</Form.Label>
+          <Form.Control
             type="date"
             value={this.state.birthDate}
             onChange={this.handleBirthDateChange}
           />
-        </label>
+        </Form.Group>
         {this.state.errors.birthDate.length ? (
           <p>{this.state.errors.birthDate}</p>
         ) : null}
-        <label>
-          Phone number:
-          <input
+
+        <Form.Group>
+          <Form.Label>Phone number</Form.Label>
+          <Form.Control
             type="tel"
+            placeholder="(000) 000 00 00"
             value={this.state.phoneNumber}
             onChange={this.handlePhoneNumberChange}
           />
-        </label>
+        </Form.Group>
         {this.state.errors.phoneNumber.length ? (
           <p>{this.state.errors.phoneNumber}</p>
         ) : null}
-        <label>
-          I agree with Privacy Policy
-          <input
+
+        <Form.Group>
+          <Form.Check
             type="checkbox"
+            label="I agree with Privacy Policy"
             value={this.state.checkbox}
             onChange={this.handleCheckboxChange}
           />
-        </label>
+        </Form.Group>
         {this.state.errors.checkbox.length ? (
           <p>{this.state.errors.checkbox}</p>
         ) : null}
-        <label>
-          Make up the password
-          <input
+
+        <Form.Group /*controlId="formBasicPassword" - было у каждого инпута*/>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             type="password"
+            placeholder="Password"
             value={this.state.password}
             onChange={this.handlePasswordChange}
           />
-        </label>
+        </Form.Group>
         {this.state.errors.password.length ? (
           <p>{this.state.errors.password}</p>
         ) : null}
-        <input type="submit" disabled={!isEnabled} />
-      </form>
+
+        <Button variant="success" type="submit" disabled={!isEnabled}>
+          Submit
+        </Button>
+      </Form>
     );
   }
 }

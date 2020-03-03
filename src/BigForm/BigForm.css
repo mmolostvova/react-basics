@@ -1,0 +1,41 @@
+.prog-bar {
+  margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ВРАЩЕНИЕ ЛОГОТИПОВ */
+
+  .App-logo-active {
+    height: 8vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo-active {
+      animation: App-logo-spin infinite 20s linear;
+    }
+    .App-logo {
+      animation: none;
+      height: 8vmin;
+
+    }
+  }
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
