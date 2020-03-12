@@ -26,14 +26,14 @@ export default class BigForm extends React.Component {
       }
     };
 
-    this.handleUserNameChange = this.handleUserNameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleBirthDateChange = this.handleBirthDateChange.bind(this);
-    this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.canBeSubmitted = this.canBeSubmitted.bind(this);
+    // this.handleUserNameChange = this.handleUserNameChange.bind(this);
+    // this.handleEmailChange = this.handleEmailChange.bind(this);
+    // this.handleBirthDateChange = this.handleBirthDateChange.bind(this);
+    // this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
+    // this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    // this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.canBeSubmitted = this.canBeSubmitted.bind(this);
   }
 
   handleUserNameChange = event => {
@@ -147,6 +147,7 @@ export default class BigForm extends React.Component {
   };
 
   canBeSubmitted = () => {
+    return true;
     const {
       userName,
       birthDate,
@@ -156,8 +157,6 @@ export default class BigForm extends React.Component {
       password
     } = this.state;
 
-    //const { isLogoRotating } = this.state;
-
     return (
       userName.length > 0 &&
       birthDate !== null &&
@@ -166,16 +165,15 @@ export default class BigForm extends React.Component {
       checkbox !== false &&
       password.length > 7
     );
-    //isLogoRotating === [true, true, true, true, true, true]
   };
 
   handleSubmit = event => {
+    event.preventDefault();
     if (!this.canBeSubmitted()) {
-      event.preventDefault();
       return;
     }
-    return alert("Your data:" + JSON.stringify(this.state));
-    //console.log(this.state)
+    // alert("Success! The Counter is open for you now!");
+    return this.props.onSubmit();
   };
 
   render() {
@@ -311,6 +309,19 @@ export default class BigForm extends React.Component {
         <Button variant="success" type="submit" disabled={!isEnabled}>
           Submit
         </Button>
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Well done!</h4>
+          <p>
+            Aww yeah, you successfully read this important alert message. This
+            example text is going to run a bit longer so that you can see how
+            spacing within an alert works with this kind of content.
+          </p>
+          <hr />
+          <p class="mb-0">
+            Whenever you need to, be sure to use margin utilities to keep things
+            nice and tidy.
+          </p>
+        </div>
       </Form>
     );
   }
